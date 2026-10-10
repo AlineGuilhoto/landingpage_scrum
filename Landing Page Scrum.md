@@ -55,7 +55,6 @@ Objetivo: conectar os artefatos da Sprint 1, validar a entrega e demonstrar a pa
 | 10 | Demonstrar Sprint Review | Apresentar fluxo Git, arquivos criados, PRs, integracao e landing page funcionando. | Aline Top 1 e `<NittoDev/>` | `main` | A fazer | Entrega demonstrada e evidencias registradas no backlog. |
 
 ---
-
 ## Evidencias de Git e GitHub
 
 | Pessoa | Tarefa relacionada | Link ou hash do commit | Link do Pull Request | PR revisado por | Merge realizado? |

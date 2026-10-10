@@ -147,7 +147,7 @@ main > section:nth-of-type(even) {
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-pill);
   transition: background-color var(--transition), transform var(--transition),
-    box-shadow var(--transition);
+  box-shadow var(--transition);
 }
 
 .btn:hover,
