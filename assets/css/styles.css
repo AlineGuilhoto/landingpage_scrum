@@ -147,7 +147,7 @@ main > section:nth-of-type(even) {
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-pill);
   transition: background-color var(--transition), transform var(--transition),
-    box-shadow var(--transition);
+  box-shadow var(--transition);
 }
 
 .btn:hover,
@@ -374,8 +374,9 @@ main > .hero,
 .artifact-card,
 .artifacts article {
   padding: var(--space-md);
-  background-color: var(--color-bg);
+  background-color: var(--color-surface);
   border-left: 5px solid var(--color-success);
+  box-shadow: var(--shadow-sm);
   border-radius: var(--radius-sm);
   transition: background-color var(--transition), transform var(--transition);
 }
@@ -527,6 +528,758 @@ main > .cta-section,
   }
 }
 
+/* ==========================================================================
+   Animacoes
+   ========================================================================== */
+/* Usa translate/scale (e nao transform) para nao travar os efeitos de hover */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(20px, -30px) rotate(180deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+@keyframes grow-line {
+  from {
+    width: 0;
+  }
+  to {
+    width: 3.5rem;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes marker-pulse {
+  0% {
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 2px rgba(245, 158, 11, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 14px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 2px var(--color-accent), 0 0 0 2px rgba(245, 158, 11, 0);
+  }
+}
+
+/* Hero com gradiente em movimento, particulas subindo e bolhas coloridas */
+main > .hero {
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, var(--color-dark), var(--color-primary), #7c3aed, #db2777, var(--color-primary-dark));
+  background-size: 40px 40px, 400% 400%;
+  animation: hero-bg 16s ease-in-out infinite;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: float 9s ease-in-out infinite, morph 7s ease-in-out infinite;
+}
+
+.hero::before {
+  width: 16rem;
+  height: 16rem;
+  top: 5%;
+  left: -4rem;
+  background-color: var(--color-accent);
+}
+
+.hero::after {
+  width: 22rem;
+  height: 22rem;
+  bottom: -6rem;
+  right: -5rem;
+  background-color: #ec4899;
+  animation-duration: 13s, 9s;
+  animation-direction: reverse, normal;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+  animation: fade-up 0.8s ease-out both;
+}
+
+.hero > *:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.hero > *:nth-child(2) {
+  animation-delay: 0.55s;
+}
+
+.hero > *:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+/* Botao principal pulsando para chamar o clique */
+.hero .btn {
+  animation: fade-up 0.8s ease-out 0.8s both, pulse 2s ease-out 1.8s infinite;
+}
+
+.hero .btn:hover,
+.hero .btn:focus-visible {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Tags do "O que e Scrum" aparecendo em sequencia */
+#scrum-framework li {
+  transition: transform var(--transition), background-color var(--transition);
+}
+
+#scrum-framework li:hover {
+  transform: translateY(-3px) rotate(-2deg);
+  background-color: #bfdbfe;
+}
+
+/* Cards com brilho passando no hover */
+.role-card,
+.artifact-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.role-card::after,
+.artifact-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.role-card:hover::after,
+.artifact-card:hover::after {
+  left: 125%;
+  transition: left 0.7s ease;
+}
+
+/* Marcadores da timeline pulsando */
+.event-item::before {
+  animation: marker-pulse 2.4s ease-out infinite;
+}
+
+.event-item:nth-child(2)::before {
+  animation-delay: 0.4s;
+}
+
+.event-item:nth-child(3)::before {
+  animation-delay: 0.8s;
+}
+
+.event-item:nth-child(4)::before {
+  animation-delay: 1.2s;
+}
+
+.event-item:nth-child(5)::before {
+  animation-delay: 1.6s;
+}
+
+.event-item:hover {
+  transform: translateX(6px);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+/* Itens de valores crescendo no hover */
+.benefit-item {
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.benefit-item:hover {
+  transform: scale(1.04);
+  border-color: var(--color-success);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Efeitos extras (modo apresentacao)
+   ========================================================================== */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes hero-bg {
+  0%,
+  100% {
+    background-position: 0 0, 0% 50%;
+  }
+  50% {
+    background-position: 0 -240px, 100% 50%;
+  }
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  50% {
+    border-radius: 70% 30% 40% 60% / 60% 40% 50% 40%;
+  }
+}
+
+@keyframes text-shine {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes spin-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes rocket {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 3px -4px;
+  }
+}
+
+@keyframes rocket-fly {
+  0% {
+    translate: 0 0;
+    opacity: 1;
+  }
+  60% {
+    translate: 40px -40px;
+    opacity: 0;
+  }
+  61% {
+    translate: -20px 20px;
+    opacity: 0;
+  }
+  100% {
+    translate: 0 0;
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  30% {
+    translate: 0 -14px;
+  }
+  50% {
+    translate: 0 0;
+  }
+  70% {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    opacity: 0;
+    translate: -80px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    translate: 80px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes flip-in {
+  from {
+    opacity: 0;
+    rotate: y 90deg;
+  }
+  to {
+    opacity: 1;
+    rotate: y 0deg;
+  }
+}
+
+@keyframes flow-down {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 200%;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  40%,
+  100% {
+    scale: 1;
+  }
+  20% {
+    scale: 1.06;
+  }
+}
+
+@keyframes pulse-white {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes progress {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+/* Evita rolagem horizontal durante as entradas laterais sem quebrar o header sticky */
+main {
+  overflow-x: clip;
+}
+
+/* Links do menu com sublinhado colorido crescendo */
+.site-nav a {
+  position: relative;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #ec4899);
+  border-radius: var(--radius-pill);
+  transition: width var(--transition), left var(--transition);
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  left: 0;
+  width: 100%;
+}
+
+/* Titulo do hero com brilho colorido passando */
+.hero h1 {
+  background-image: linear-gradient(90deg, #fff, #fde68a, #f9a8d4, #c4b5fd, #fff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fade-up 0.8s ease-out 0.3s both, text-shine 5s linear infinite;
+}
+
+/* Foguete no botao do hero */
+.hero .btn::after {
+  content: "\1F680";
+  display: inline-block;
+  margin-left: 0.5rem;
+  animation: rocket 1.2s ease-in-out infinite;
+}
+
+.hero .btn:hover::after {
+  animation: rocket-fly 0.7s ease-in-out;
+}
+
+/* Titulos das secoes com gradiente animado */
+.section-title {
+  background-image: linear-gradient(90deg, var(--color-dark), var(--color-primary), #7c3aed, #db2777, var(--color-dark));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shine 8s linear infinite;
+}
+
+.section-title::after {
+  width: 3.5rem;
+  background: linear-gradient(90deg, var(--color-accent), #ec4899, #7c3aed);
+}
+
+/* Tags coloridas flutuando */
+#scrum-framework li {
+  animation: bob 3s ease-in-out infinite;
+}
+
+#scrum-framework li:nth-child(1) {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+#scrum-framework li:nth-child(2) {
+  background-color: #fef3c7;
+  color: #b45309;
+  animation-delay: 0.3s;
+}
+
+#scrum-framework li:nth-child(3) {
+  background-color: #fce7f3;
+  color: #be185d;
+  animation-delay: 0.6s;
+}
+
+#scrum-framework li:nth-child(4) {
+  background-color: #dcfce7;
+  color: #15803d;
+  animation-delay: 0.9s;
+}
+
+/* Cards de papeis: borda arco-iris girando, emoji e inclinacao 3D */
+.roles-grid .role-card {
+  border: 3px solid transparent;
+  background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    conic-gradient(from var(--angle), var(--color-primary), #7c3aed, #ec4899, var(--color-accent), var(--color-primary)) border-box;
+  animation: spin-border 4s linear infinite;
+}
+
+.role-card::before {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-size: 2.75rem;
+}
+
+.role-card:nth-child(1)::before {
+  content: "\1F3AF";
+}
+
+.role-card:nth-child(2)::before {
+  content: "\1F6E1\FE0F";
+}
+
+.role-card:nth-child(3)::before {
+  content: "\1F4BB";
+}
+
+.roles-grid .role-card:hover {
+  transform: perspective(700px) rotateX(6deg) rotateY(-6deg) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.25);
+}
+
+.role-card:hover::before {
+  animation: bounce 0.8s ease;
+}
+
+/* Timeline com linha colorida fluindo e emojis nos eventos */
+.events-timeline::before {
+  background: linear-gradient(180deg, var(--color-accent), #ec4899, #7c3aed, var(--color-primary), var(--color-accent));
+  background-size: 100% 200%;
+  animation: flow-down 3s linear infinite;
+}
+
+.event-item h3::before {
+  display: inline-block;
+  margin-right: var(--space-xs);
+}
+
+.event-item:nth-child(1) h3::before {
+  content: "\1F504";
+}
+
+.event-item:nth-child(2) h3::before {
+  content: "\1F5D3\FE0F";
+}
+
+.event-item:nth-child(3) h3::before {
+  content: "\2600\FE0F";
+}
+
+.event-item:nth-child(4) h3::before {
+  content: "\1F50D";
+}
+
+.event-item:nth-child(5) h3::before {
+  content: "\1F4A1";
+}
+
+.events-timeline .event-item:hover {
+  border-color: #7c3aed;
+  box-shadow: -6px 6px 0 rgba(124, 58, 237, 0.2);
+}
+
+.event-item:hover h3::before {
+  animation: spin 0.8s ease;
+}
+
+/* Artefatos com emoji e destaque no hover */
+.artifact-card::before {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-size: 2.5rem;
+}
+
+.artifact-card:nth-child(1)::before {
+  content: "\1F4CB";
+}
+
+.artifact-card:nth-child(2)::before {
+  content: "\1F5C2\FE0F";
+}
+
+.artifact-card:nth-child(3)::before {
+  content: "\1F680";
+}
+
+.artifacts .artifact-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(22, 163, 74, 0.25);
+}
+
+.artifact-card:hover::before {
+  animation: bounce 0.8s ease;
+}
+
+/* Valores com emoji proprio girando no hover */
+.benefit-item:nth-child(1)::before {
+  content: "\1F91D";
+}
+
+.benefit-item:nth-child(2)::before {
+  content: "\1F3AF";
+}
+
+.benefit-item:nth-child(3)::before {
+  content: "\1F513";
+}
+
+.benefit-item:nth-child(4)::before {
+  content: "\1F64C";
+}
+
+.benefit-item:nth-child(5)::before {
+  content: "\1F981";
+}
+
+.benefit-item::before {
+  display: inline-block;
+}
+
+.benefit-item:hover {
+  background: linear-gradient(120deg, #ecfdf5, #eff6ff);
+}
+
+.benefit-item:hover::before {
+  animation: spin 0.6s ease;
+}
+
+/* CTA com gradiente animado, emojis flutuando e botao brilhando */
+.cta-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, var(--color-primary), #7c3aed, #db2777, var(--color-accent), var(--color-primary));
+  background-size: 400% 400%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+.cta-section::before,
+.cta-section::after {
+  position: absolute;
+  font-size: 4rem;
+  opacity: 0.35;
+  pointer-events: none;
+  animation: float 7s ease-in-out infinite;
+}
+
+.cta-section::before {
+  content: "\2728";
+  top: 10%;
+  left: 6%;
+}
+
+.cta-section::after {
+  content: "\1F680";
+  bottom: 10%;
+  right: 6%;
+  animation-duration: 9s;
+  animation-direction: reverse;
+}
+
+.cta-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h2 {
+  animation: heartbeat 2.5s ease-in-out infinite;
+}
+
+.cta-section .btn {
+  animation: pulse-white 2s ease-out infinite;
+}
+
+.cta-section .btn:hover,
+.cta-section .btn:focus-visible {
+  transform: translateY(-3px) scale(1.08);
+}
+
+/* Barra de progresso de leitura no topo */
+@supports (animation-timeline: scroll()) {
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--color-accent), #ec4899, #7c3aed, var(--color-primary));
+    transform-origin: 0 50%;
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+/* Revelacao ao rolar a pagina (navegadores com scroll-driven animations) */
+@supports (animation-timeline: view()) {
+  .section-title::after {
+    animation: grow-line linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  #scrum-framework li {
+    animation: pop-in linear both, bob 3s ease-in-out infinite;
+    animation-timeline: view(), auto;
+    animation-range: entry 0% cover 25%, normal;
+  }
+
+  .benefit-item {
+    animation: pop-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+
+  .role-card {
+    animation: flip-in linear both, spin-border 4s linear infinite;
+    animation-timeline: view(), auto;
+    animation-range: entry 0% cover 35%, normal;
+  }
+
+  .artifact-card {
+    animation: flip-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+
+  .event-item:nth-child(odd) {
+    animation: slide-from-left linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  .event-item:nth-child(even) {
+    animation: slide-from-right linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  .cta-section .container {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+}
+
 /* ---------- Acessibilidade: menos movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -536,6 +1289,7 @@ main > .cta-section,
   *,
   *::before,
   *::after {
+    animation: none !important;
     transition: none !important;
   }
 }

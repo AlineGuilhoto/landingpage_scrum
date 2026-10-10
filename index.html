@@ -3,66 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Introdução ao Scrum, suas responsabilidades, eventos e artefatos.">
+    <meta name="description" content="Conheça o Scrum, suas responsabilidades, eventos, artefatos e valores.">
     <title>Scrum | Introdução ao Framework Ágil</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
-<header>
-    <h1>Scrum: trabalho em equipe e entregas de valor</h1>
-    <p>Conheça um framework ágil utilizado para desenvolver produtos complexos.</p>
+<header class="site-header">
+    <a class="logo" href="#inicio" aria-label="Scrum - início">Scrum</a>
+    <nav class="site-nav" aria-label="Navegação principal">
+        <ul>
+            <li><a href="#scrum-framework">O que é Scrum</a></li>
+            <li><a href="#responsabilidades">Responsabilidades</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+            <li><a href="#artefatos">Artefatos</a></li>
+            <li><a href="#valores">Valores</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
-    <section>
-        <h2>O que é Scrum?</h2>
-        <p>Scrum é um framework leve que ajuda pessoas, equipes e organizações a gerar valor por meio de soluções adaptativas para problemas complexos.</p>
-        <p>O trabalho acontece em ciclos chamados <strong>Sprints</strong>, que duram até um mês. Ao final de cada Sprint, a equipe busca entregar um incremento de produto útil e utilizável.</p>
+    <section class="hero" id="inicio" aria-labelledby="titulo-principal">
+        <h1 id="titulo-principal">Scrum: trabalho em equipe e entregas de valor</h1>
+        <p>Conheça um framework ágil utilizado para desenvolver produtos complexos com colaboração, inspeção e adaptação.</p>
+        <a class="btn" href="#scrum-framework">Conheça o Scrum</a>
     </section>
 
-    <section>
-        <h2>Responsabilidades na equipe Scrum</h2>
-        <article>
-            <h3>Product Owner</h3>
-            <p>É responsável por maximizar o valor do produto e gerenciar o Product Backlog.</p>
-        </article>
-        <article>
-            <h3>Scrum Master</h3>
-            <p>Ajuda a equipe e a organização a compreender e aplicar o Scrum de maneira eficaz.</p>
-        </article>
-        <article>
-            <h3>Developers</h3>
-            <p>São os profissionais que criam o incremento do produto a cada Sprint.</p>
-        </article>
+    <section id="scrum-framework" aria-labelledby="titulo-scrum">
+        <div class="container">
+            <h2 class="section-title" id="titulo-scrum">O que é Scrum?</h2>
+            <p>Scrum é um framework leve que ajuda pessoas, equipes e organizações a gerar valor por meio de soluções adaptativas para problemas complexos.</p>
+            <p>O trabalho acontece em ciclos chamados <strong>Sprints</strong>, que duram até um mês. Ao final de cada Sprint, a equipe busca entregar um incremento de produto útil e utilizável.</p>
+            <ul aria-label="Conceitos importantes do Scrum">
+                <li>Colaboração</li>
+                <li>Transparência</li>
+                <li>Inspeção</li>
+                <li>Adaptação</li>
+            </ul>
+        </div>
     </section>
 
-    <section>
-        <h2>Principais eventos</h2>
-        <ul>
-            <li><strong>Sprint:</strong> período de trabalho com objetivo definido.</li>
-            <li><strong>Sprint Planning:</strong> planejamento do que será realizado na Sprint.</li>
-            <li><strong>Daily Scrum:</strong> encontro diário para inspecionar o progresso e adaptar o plano.</li>
-            <li><strong>Sprint Review:</strong> avaliação do resultado da Sprint com as partes interessadas.</li>
-            <li><strong>Sprint Retrospective:</strong> reflexão sobre melhorias no modo de trabalhar.</li>
-        </ul>
+    <section id="responsabilidades" aria-labelledby="titulo-responsabilidades">
+        <div class="container">
+            <h2 class="section-title" id="titulo-responsabilidades">Responsabilidades na equipe Scrum</h2>
+            <div class="roles-grid">
+                <article class="role-card">
+                    <h3>Product Owner</h3>
+                    <p>É responsável por maximizar o valor do produto e gerenciar o Product Backlog.</p>
+                </article>
+                <article class="role-card">
+                    <h3>Scrum Master</h3>
+                    <p>Ajuda a equipe e a organização a compreender e aplicar o Scrum de maneira eficaz.</p>
+                </article>
+                <article class="role-card">
+                    <h3>Developers</h3>
+                    <p>São os profissionais que criam o incremento do produto a cada Sprint.</p>
+                </article>
+            </div>
+        </div>
     </section>
 
-    <section>
-        <h2>Artefatos do Scrum</h2>
-        <ol>
-            <li><strong>Product Backlog:</strong> lista ordenada do que é necessário para melhorar o produto.</li>
-            <li><strong>Sprint Backlog:</strong> objetivo da Sprint, itens selecionados e plano para entregá-los.</li>
-            <li><strong>Increment:</strong> resultado utilizável que contribui para o objetivo do produto.</li>
-        </ol>
+    <section id="eventos" aria-labelledby="titulo-eventos">
+        <div class="container">
+            <h2 class="section-title" id="titulo-eventos">Principais eventos</h2>
+            <ol class="events-timeline">
+                <li class="event-item">
+                    <h3>Sprint</h3>
+                    <p>Período de trabalho com objetivo definido, que engloba os demais eventos.</p>
+                </li>
+                <li class="event-item">
+                    <h3>Sprint Planning</h3>
+                    <p>Planejamento do que será realizado na Sprint.</p>
+                </li>
+                <li class="event-item">
+                    <h3>Daily Scrum</h3>
+                    <p>Encontro diário para inspecionar o progresso e adaptar o plano.</p>
+                </li>
+                <li class="event-item">
+                    <h3>Sprint Review</h3>
+                    <p>Avaliação do resultado da Sprint com as partes interessadas.</p>
+                </li>
+                <li class="event-item">
+                    <h3>Sprint Retrospective</h3>
+                    <p>Reflexão sobre melhorias no modo de trabalhar.</p>
+                </li>
+            </ol>
+        </div>
     </section>
 
-    <aside>
-        <h2>Valores do Scrum</h2>
-        <p>Comprometimento, foco, abertura, respeito e coragem orientam o trabalho da equipe.</p>
-    </aside>
+    <section class="artifacts" id="artefatos" aria-labelledby="titulo-artefatos">
+        <div class="container">
+            <h2 class="section-title" id="titulo-artefatos">Artefatos do Scrum</h2>
+            <div class="artifacts-list">
+                <article class="artifact-card">
+                    <h3>Product Backlog</h3>
+                    <p>Lista ordenada do que é necessário para melhorar o produto.</p>
+                </article>
+                <article class="artifact-card">
+                    <h3>Sprint Backlog</h3>
+                    <p>Objetivo da Sprint, itens selecionados e plano para entregá-los.</p>
+                </article>
+                <article class="artifact-card">
+                    <h3>Increment</h3>
+                    <p>Resultado utilizável que contribui para o objetivo do produto.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits" id="valores" aria-labelledby="titulo-valores">
+        <div class="container">
+            <h2 class="section-title" id="titulo-valores">Valores do Scrum</h2>
+            <p>Esses cinco valores orientam o trabalho da equipe:</p>
+            <ul>
+                <li class="benefit-item">Comprometimento</li>
+                <li class="benefit-item">Foco</li>
+                <li class="benefit-item">Abertura</li>
+                <li class="benefit-item">Respeito</li>
+                <li class="benefit-item">Coragem</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="cta-section" aria-labelledby="titulo-conclusao">
+        <div class="container">
+            <h2 id="titulo-conclusao">Conhecer é o primeiro passo!</h2>
+            <p>O Scrum favorece a criação de valor por meio de ciclos curtos, aprendizado contínuo e trabalho colaborativo.</p>
+            <a class="btn" href="#scrum-framework">Revisar o conteúdo</a>
+        </div>
+    </section>
 </main>
 
-<footer>
-    <p>Atividade de Agile — Página desenvolvida com HTML5 semântico, sem CSS.</p>
+<footer class="site-footer">
+    <p>Atividade de Agile — Página desenvolvida com HTML5 semântico e CSS3 responsivo.</p>
+    <a href="#inicio">Voltar ao início</a>
 </footer>
 </body>
 </html>
